@@ -1,0 +1,67 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}Costos por Crianza{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+
+            <div style="color: white; font-size: smaller;"><a href="/Costos/{{total.tipo}}" style="color: white;">{{total.modo}}</a>&nbsp;>&nbsp;<a href="/Costos/CostosXCrianza/{{total.crianza}}" style="color: white;">CRIANZA {{total.crianza}}</a>&nbsp;>&nbsp;{{total.cuentamadre}}</div>
+            <div id="stickytab" class="table-responsive">
+                <table class="table table-bordered table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">SubCuenta</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo SubCuenta $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo SubCuenta x Pollo $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo SubCuenta u$d</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo SubCuenta x Pollo u$d</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+
+                        {% for clave, valor in ctashija.items %}
+
+                            <tr>
+                                <td style="text-align: start;">{{clave}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.importepesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.costoxpollopesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.importeusd|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.costoxpollousd|floatformat:"2g"}}</td>
+                                <td style="text-align: center;"><a href="CostosXsubCuenta/{{valor.idcuenta}}" class="btn btn-primary btn-sm">Detalle</a></td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td scope="col" style="text-align: center; vertical-align: middle;">TOTALES</td>
+                            <td scope="col" style="text-align: end;">{{total.totalpesos|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: end;">{{total.totalcostoxpollopesos|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: end;">{{total.totalusd|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: end;">{{total.totalcostoxpollousd|floatformat:"2g"}}</td>
+                            <td scope="col"></td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger text-center">Debe iniciar sesión para ver Costos por Crianza</div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+

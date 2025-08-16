@@ -1,0 +1,12 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <div style="text-align: center; color: white; font-size:xx-large; font-weight: bold;">Crianza {{imagen.idcrianza}}</div>
+        <div><img src="{{imagen.imagen.url}}" style="width: 100%;"></div>
+    </div> 
+
+{% endblock %}

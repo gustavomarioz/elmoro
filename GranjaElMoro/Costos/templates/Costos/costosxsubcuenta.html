@@ -1,0 +1,72 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}Costos por Crianza{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+
+            <div style="color: white; font-size: smaller;"><a href="/Costos/{{total.tipo}}" style="color: white;">{{total.modo}}</a>&nbsp;>&nbsp;<a href="/Costos/CostosXCrianza/{{total.crianza}}" style="color: white;">CRIANZA {{total.crianza}}</a>&nbsp;>&nbsp;<a href="/Costos/CostosXCrianza/CostosXCuenta/{{total.idcuentamadre}}" style="color: white;">{{total.cuentamadre}}</a>&nbsp;>&nbsp;{{total.cuentahija}}</div>
+            <div id="stickytab" class="table-responsive">
+                <table class="table table-bordered table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center; vertical-align: middle;" class="sorting desc">Fecha</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Descripción</th>
+                            {% if total.tipo == 'd' %}
+                                <th scope="col" style="text-align: center; vertical-align: middle;">Importe</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">Días</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">Aplica Desde</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">Aplica Hasta</th>
+                            {% endif %}
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Importe $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Importe u$d</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+
+                        {% for clave, valor in cuentas.items %}
+
+                            <tr>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.fecha|date:"d/m/Y"}}</td>
+                                <td style="text-align: start; font-weight: bolder;">{{valor.descri}}</td>
+                                {% if total.tipo == 'd' %}
+                                    <td style="text-align: end; font-weight: bolder;">{{valor.importe|floatformat:"2g"}}</td>
+                                    <td style="text-align: end; font-weight: bolder;">{{valor.dias}}</td>
+                                    <td style="text-align: end; font-weight: bolder;">{{valor.adesde|date:"d/m/Y"}}</td>
+                                    <td style="text-align: end; font-weight: bolder;">{{valor.ahasta|date:"d/m/Y"}}</td>
+                                {% endif %}
+                                <td style="text-align: end; font-weight: bolder;">{{valor.totpesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.totusd|floatformat:"2g"}}</td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td scope="col" style="text-align: center; vertical-align: middle;" colspan={% if total.tipo == 'd' %}"6"{% else %}"2"{% endif %}>TOTALES</td>
+                            <td scope="col" style="text-align: end;">{{total.totalpesos|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: end;">{{total.totalusd|floatformat:"2g"}}</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger text-center">Debe iniciar sesión para ver Costos por Crianza</div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
