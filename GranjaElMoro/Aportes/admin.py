@@ -1,7 +1,9 @@
 from django.contrib import admin
 from .models import Aporte
+import os
 import json
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class AporteAdmin(admin.ModelAdmin):
     list_display = [
@@ -18,7 +20,8 @@ class AporteAdmin(admin.ModelAdmin):
     ]
 
     def actualizar_cotizacion_dolar_blue(self, request, queryset):
-        with open("blue.json") as blue:
+        ruta_json = os.path.join(BASE_DIR, 'dolar', 'blue.json')
+        with open(ruta_json, 'r') as blue:
             datos = json.load(blue)
 
         aportes_sin_cotizacion = queryset.filter(cot_usd_par=0)
@@ -53,7 +56,8 @@ class AporteAdmin(admin.ModelAdmin):
                 )
 
     def actualizar_cotizacion_dolar_oficial(self, request, queryset):
-        with open("oficial.json") as oficial:
+        ruta_json = os.path.join(BASE_DIR, 'dolar', 'oficial.json')
+        with open(ruta_json, 'r') as oficial:
             datos = json.load(oficial)
 
         aportes_sin_cotizacion = queryset.filter(cot_usd_ofi=0)

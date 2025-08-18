@@ -1,8 +1,7 @@
 from django.contrib import admin
 from .models import RegistroContable
-
+import os
 import json
-
 
 class RegistroContableAdmin(admin.ModelAdmin):
 
@@ -35,7 +34,9 @@ class RegistroContableAdmin(admin.ModelAdmin):
     ]
 
     def actualizar_cotizacion_dolar_blue(self, request, queryset):
-        with open("blue.json") as blue:
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        ruta_json = os.path.join(BASE_DIR, 'dolar', 'blue.json')
+        with open(ruta_json, 'r') as blue:
             datos = json.load(blue)
 
         registroscontables_sin_cotizacion = queryset.filter(cot_usd_par=0)
