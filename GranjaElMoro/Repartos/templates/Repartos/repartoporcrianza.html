@@ -2,15 +2,15 @@
 
 {% load static %}
 
-{% block title %}Repartos agrupados por Crianza{% endblock %}
+{% block title %}Repartos por Crianza{% endblock %}
 
 {% block content %}
 
-    <br>
     <div class="container">
 
         {% if request.user.is_authenticated %}
 
+            <div class="row justify-content-center" style="color: white; font-size:medium;">REPARTOS AGRUPADOS POR CRIANNZA</div>
             <div id="stickytab" class="table-responsive">
                 <table class="table table-bordered table-dark table-hover">
                     <thead>

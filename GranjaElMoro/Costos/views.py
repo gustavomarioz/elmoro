@@ -19,7 +19,7 @@ def costos(request, tipo):
         filtro = armar_filtro(tipo, crianza.fechainicio, crianza.fechahasta)
 
         registros = RegistroContable.objects.filter(
-            (Q(idcuenta__gt="01.00") & Q(idcuenta__lt="07.00"))
+            (Q(idcuenta__gt="01.00") & Q(idcuenta__lt="06.00"))
             & (~Q(idcuenta="03.05") & ~Q(idcuenta="03.98"))
         ).filter(filtro)
 
@@ -74,11 +74,11 @@ def costosxcrianza(request, id):
     filtro = armar_filtro(tipo, crianza.fechainicio, crianza.fechahasta)
 
     registros = RegistroContable.objects.filter(
-        (Q(idcuenta__gt="01.00") & Q(idcuenta__lt="07.00"))
+        (Q(idcuenta__gt="01.00") & Q(idcuenta__lt="06.00"))
         & (~Q(idcuenta="03.05") & ~Q(idcuenta="03.98"))
     ).filter(filtro)
 
-    cuentasmadre = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    cuentasmadre = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
 
     for registro in registros:
 
@@ -104,7 +104,7 @@ def costosxcrianza(request, id):
         totalcostoxpollopesos = 0.0
         totalcrianzausd = 0.0
         totalcostoxpollousd = 0.0
-        for x in range(6):
+        for x in range(5):
             cuentamadre = "0" + str(x + 1) + ".00"
             cuenta = Cuenta.objects.get(idcuenta=cuentamadre)
             totalcrianzapesos += cuentasmadre[x][0]

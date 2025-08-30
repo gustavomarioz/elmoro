@@ -6,11 +6,11 @@
 
 {% block content %}
 
-    <br>
     <div class="container">
 
         {% if request.user.is_authenticated %}
 
+            <div class="row justify-content-center" style="color: white; font-size:medium;">GESTION DE APORTES</div>
             <div id="stickytab" class="table-responsive">
                 <table class="table table-sm table-dark table-striped">
                     <thead>
@@ -21,7 +21,7 @@
                             <th scope="col" style="text-align: center; vertical-align: middle;">Aporte en U$S</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Cot. U$S Oficial</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Cot. U$S Blue</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;" colspan="2"><a href="CrearAporte" class="btn btn-success btn-block">Crear Aporte</a></th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;" colspan="2"><a href="CrearAporte" class="btn btn-success btn-block">Crear</a></th>
                         </tr>
                     </thead>
                     

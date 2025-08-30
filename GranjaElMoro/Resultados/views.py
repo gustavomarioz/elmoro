@@ -24,7 +24,7 @@ def resultados(request, tipo):
             (
                 (Q(idcuenta__gt="00.00") & Q(idcuenta__lt="00.04"))
                 | (
-                    (Q(idcuenta__gt="01.00") & Q(idcuenta__lt="07.00"))
+                    (Q(idcuenta__gt="01.00") & Q(idcuenta__lt="06.00"))
                     & (~Q(idcuenta="03.05") & ~Q(idcuenta="03.98"))
                 )
             )
@@ -100,7 +100,7 @@ def resultadosxcrianza(request, id):
         (
             (Q(idcuenta__gt="00.00") & Q(idcuenta__lt="00.04"))
             | (
-                (Q(idcuenta__gt="01.00") & Q(idcuenta__lt="07.00"))
+                (Q(idcuenta__gt="01.00") & Q(idcuenta__lt="06.00"))
                 & (~Q(idcuenta="03.05") & ~Q(idcuenta="03.98"))
             )
         )
