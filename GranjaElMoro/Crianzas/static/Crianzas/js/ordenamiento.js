@@ -165,23 +165,6 @@ $(document).ready(() => {
       dia = valor.substring(0, primero);
       mes = valor.substring(inicio, segundo);
       anio = valor.substring(fin);
-      // if (anio.length == 1) {
-      //   anio = "200" + anio;
-      // }
-      // else if (anio.length == 2) {
-      //   var hoy = Date();
-      //   var siglo = hoy.getFullYear().substring(0,2);
-      //   var decada = hoy.getFullYear().substring(2);
-      //   if (parseInt(anio) <= parseInt(decada)) {
-      //     anio = siglo + anio;
-      //   }
-      //   else if (anio.substring(0,1) == decada.substring(0,1)) {
-      //     anio = siglo + anio;
-      //   }
-      //   else {
-      //     anio = parseInt(siglo - 1).toString() + anio
-      //   }
-      // }
 
       return parseInt(anio + mes + dia);
     }

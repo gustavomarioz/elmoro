@@ -221,30 +221,46 @@ def repartoporimpteusd(request):
     )
 
     crianzas = 0
+    totalpesos = 0
     totalusdofi = 0
     totalusdblue = 0
     totalusdprom = 0
     impteusd = {}
     for repartoporimpteusd in repartosporimpteusd:
         crianzas += 1
+        totalpesos += repartoporimpteusd["Total_Pesos"]
         totalusdofi += repartoporimpteusd["Total_US_Oficial"]
         totalusdblue += repartoporimpteusd["Total_US_Blue"]
         totalusdprom += repartoporimpteusd["Total_US_Promedio"]
         d = {
-            repartoporimpteusd["idcrianza_id"]: {
-                "impte_pesos": repartoporimpteusd["Total_Pesos"],
-                "impte_usofi": repartoporimpteusd["Total_US_Oficial"],
-                "impte_usblue": repartoporimpteusd["Total_US_Blue"],
-                "impte_usprom": repartoporimpteusd["Total_US_Promedio"],
-                "crianzas": crianzas,
-                "impte_usofi_prom": totalusdofi / crianzas,
-                "impte_usblue_prom": totalusdblue / crianzas,
-                "impte_usprom_prom": totalusdprom / crianzas,
+            crianzas: {
+            "impte_pesos": totalpesos,
+            "impte_usofi": totalusdofi,
+            "impte_usblue": totalusdblue,
+            "impte_usprom": totalusdprom,
+            "impte_usofi_prom": totalusdofi / crianzas,
+            "impte_usblue_prom": totalusdblue / crianzas,
+            "impte_usprom_prom": totalusdprom / crianzas,
+            # repartoporimpteusd["idcrianza_id"]: {
+            #     "impte_pesos": repartoporimpteusd["Total_Pesos"],
+            #     "impte_usofi": repartoporimpteusd["Total_US_Oficial"],
+            #     "impte_usblue": repartoporimpteusd["Total_US_Blue"],
+            #     "impte_usprom": repartoporimpteusd["Total_US_Promedio"],
+            #     "crianzas": crianzas,
+            #     "impte_usofi_prom": totalusdofi / crianzas,
+            #     "impte_usblue_prom": totalusdblue / crianzas,
+            #     "impte_usprom_prom": totalusdprom / crianzas,
             }
         }
         impteusd.update(d)
         impteusd_dic = dict(sorted(impteusd.items(), reverse=True))
 
+    # total = {
+    #     "totalofi": totalusdofi,
+    #     "totalblue": totalusdblue,
+    #     "totalprom": totalusdprom,
+    # }
+    
     return render(
         request,
         "Repartos/repartoporimpteusd.html",
