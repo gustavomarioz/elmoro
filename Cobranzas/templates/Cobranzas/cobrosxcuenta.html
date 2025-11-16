@@ -1,0 +1,60 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}Cobranzas por Crianza{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+
+            <div style="color: white; font-size: smaller;"><a href="/Cobranzas/{{total.tipo}}" style="color: white;">{{total.modo}}</a>&nbsp;>&nbsp;<a href="/Cobranzas/CobrosXCrianza/{{total.crianza}}" style="color: white;">CRIANZA {{total.crianza}}</a>&nbsp;>&nbsp;{{total.cuentahija}}</div>
+            <div id="stickytab" class="table-responsive">
+                <table class="table table-bordered table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center; vertical-align: middle;" class="sorting desc">Fecha</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Descripción</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Importe $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Importe u$d</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+
+                        {% for clave, valor in cuentas.items %}
+
+                            <tr>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.fecha|date:"d/m/Y"}}</td>
+                                <td style="text-align: start; font-weight: bolder;">{{valor.descri}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.totpesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.totusd|floatformat:"2g"}}</td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td scope="col" style="text-align: center; vertical-align: middle;" colspan="2">TOTALES</td>
+                            <td scope="col" style="text-align: end;">{{total.totalpesos|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: end;">{{total.totalusd|floatformat:"2g"}}</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger text-center">Debe iniciar sesión para ver Cobranzas por Crianza</div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+

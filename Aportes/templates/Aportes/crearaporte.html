@@ -1,0 +1,61 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %} Creación de aporte {% endblock%}
+
+{% block content %}
+
+  <div class="container">
+    {% if request.user.is_authenticated %} 
+
+      {% if messages %} 
+        {% for message in messages %}
+          <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-danger">{{ message }}</strong>
+          </div>
+        {% endfor %} 
+      {% endif %}
+
+      <div class="row">
+        <div class="col-md-4 offset-md-4">
+          <div class="card mt-1 mb-1">
+            <div class="card-header text-center bg-success text-white pb-0">
+              <h4>Creación de Aporte</h4>
+            </div>
+            <div class="card-body pt-1 mb-0 pb-0">
+              <form action="" method="POST" style="margin-bottom:0.4rem;">
+                {% csrf_token %}
+
+                <table>{{ form.as_table }}</table>
+
+                <div class="card-footer pt-1 pb-1">
+                  <button
+                  type="submit"
+                  class="btn btn-success btn-block"
+                  >Guardar
+                  </button>
+                  <a
+                    href="/Aportes/Crud/"
+                    class="btn btn-secondary btn-block"
+                    role="button"
+                    >Cancelar
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% else %}
+
+      <div class="alert alert-danger text-center">
+        Debe iniciar sesión para ver {% if reparto %}Edición{% else %}Creación{% endif %} de Reparto
+      </div>
+
+    {% endif %}
+  </div>
+
+{% endblock %}

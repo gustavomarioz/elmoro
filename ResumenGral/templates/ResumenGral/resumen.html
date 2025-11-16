@@ -1,0 +1,71 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}Resumen General de Crianzas{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+
+            <div class="row justify-content-center" style="color: white; font-size:medium;">RESUMEN GENERAL DE CRIANZAS</div>
+            <div id="stickytab" class="table-responsive">
+                <table class="table table-bordered table-dark table-hover">
+                    <thead>
+                        <tr class>
+                            <th scope="col" style="text-align: center;" class="sorting desc">Crianza</th>
+                            <th scope="col" style="text-align: center;">Desde</th>
+                            <th scope="col" style="text-align: center;">Hasta</th>
+                            <th scope="col" style="text-align: center;">Temporada</th>
+                            <th scope="col" style="text-align: center;">Ingresado</th>
+                            <th scope="col" style="text-align: center;">Faenado</th>
+                            <th scope="col" style="text-align: center;">Edad</th>
+                            <th scope="col" style="text-align: center;">Peso</th>
+                            <th scope="col" style="text-align: center;">Mortandad</th>
+                            <th scope="col" style="text-align: center;">IC</th>
+                            <th scope="col" style="text-align: center;">Conversión</th>
+                            <th scope="col" style="text-align: center;">FEP</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody>
+
+                        {% for crianza in crianzas %}
+
+                            <tr>
+                                <td style="text-align: center;">
+                                    {% if crianza.imagen %}
+                                        <a href="{% url 'imagen' crianza.idcrianza %}" style="color: cyan;">{{crianza.idcrianza}}</a>
+                                    {% else %}
+                                        {{crianza.idcrianza}}
+                                    {% endif %}
+                                </td>
+                                <td style="text-align: center;">{{crianza.fechadesde|date:"d/m/Y"}}</td>
+                                <td style="text-align: center;">{{crianza.fechahasta|date:"d/m/Y"}}</td>
+                                <td style="text-align: left;">{{crianza.temporada_crianza}}</td>
+                                <td style="text-align: end;">{{crianza.ingresado}}</td>
+                                <td style="text-align: end;">{{crianza.faenado}}</td>
+                                <td style="text-align: end;">{{crianza.dias|floatformat:"1"}}</td>
+                                <td style="text-align: end;">{{crianza.peso|floatformat:"3"}}</td>
+                                <td style="text-align: end;">{{crianza.mortandad|floatformat:"1"}}</td>
+                                <td style="text-align: end;">{{crianza.indicreci}}</td>
+                                <td style="text-align: end;">{{crianza.conversion|floatformat:"2"}}</td>
+                                <td style="text-align: end;">{{crianza.fep|floatformat:"1"}}</td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+        {% else %}
+
+            <div class="alert alert-danger text-center">Debe iniciar sesión para ver Crianzas</div>
+
+        {% endif %}
+    </div>
+    <br>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Granja El Moro
+{% endblock %}
+
+{% block content %}
+
+  <!-- Heading -->
+  <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'Crianzas/img/vista_desde_fondo.jpg' %}" alt="">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="section-heading-lower">Establecimiento Modelo</span>
+          </h2>
+          <p class="mb-1" style="text-align: justify;">Predio de 5 has, provisto con la infraestructura,
+            servicios, equipamiento y tecnología, necesarios para desarrollar la producción
+            con un alto grado de automatización, optimizando la
+            eficiencia, productividad y calidad del producto final.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Message -->
+  <section class="page-section cta">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <div class="cta-inner text-center rounded">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper">Carne de primera</span>
+              <span class="section-heading-lower">Calidad</span>
+            </h2>
+            <p class="mb-0" style="text-align: justify;">
+              El mercado avícola se encuentra consolidado y su producto
+              altamente demandado, alcanzando récords de consumo en la
+              mesa de los argentinos.
+              Nuestra granja, no solo produce carne de primera calidad
+              sino, también, aplicando estándares de producción con alto
+              cuidado en materia de bioseguridad e higiene
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Heading -->
+  <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'Crianzas/img/elmoro.png' %}" alt="">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-2" >
+            <span class="section-heading-lower">Ubicación</span>
+          </h2>
+          <p class="mb-1" style="text-align: justify;">A solo 12 kms de la ciudad de Lobos, a la altura
+            del km 157,5 de la ruta 41, en el paraje La Porteña, se sitúa
+            el establecimiento, combinando excelentes accesos y servicios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

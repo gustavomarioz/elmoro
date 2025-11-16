@@ -1,0 +1,59 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}Gestión de Repartos{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+
+            <div class="row justify-content-center" style="color: white; font-size:medium;">GESTION DE REPARTOS</div>
+            <div id="stickytab" class="table-responsive">
+                <table class="table table-sm table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center; vertical-align: middle;" class="sorting desc">Crianza</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Fecha</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Importe $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Cot. U$S Oficial</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Cot. U$S Blue</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Cuota</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;" colspan="2"><a href="GestionarReparto/{{0}}" class="btn btn-success btn-block">Crear</a></th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+
+                        {% for repartocrud in repartoscrud %}
+
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">{{repartocrud.idcrianza}}</th>
+                                <td style="text-align: end; vertical-align: middle;">{{repartocrud.fecha|date:"d/m/Y"}}</td>
+                                <td style="text-align: end; vertical-align: middle;">{{repartocrud.importe|floatformat:"2g"}}</td>
+                                <td style="text-align: end; vertical-align: middle;">{{repartocrud.cot_usd_ofi|floatformat:"2g"}}</td>
+                                <td style="text-align: end; vertical-align: middle;">{{repartocrud.cot_usd_par|floatformat:"2g"}}</td>
+                                <td style="text-align: end; vertical-align: middle;">{{repartocrud.cuota|floatformat:"1g"}}</td>
+                                <td style="text-align: center;"><a href="GestionarReparto/{{repartocrud.idreparto}}" class="btn btn-primary btn-block">Editar</a></td>
+                                <td style="text-align: center;"><a href="EliminarReparto/{{repartocrud.idreparto}}" class="btn btn-danger btn-block btnEliminacion">Eliminar</a></td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger text-center">Debe iniciar sesión para ver Gestión de Repartos</div>
+
+        {% endif %}
+
+    </div>
+    <br>
+    
+{% endblock %}

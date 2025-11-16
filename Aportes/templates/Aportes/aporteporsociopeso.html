@@ -1,0 +1,64 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}Aportes en $ agrupados por Socio{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+
+            <div class="row justify-content-center" style="color: white; font-size:medium;">APORTES EN $ AGRUPADOS POR SOCIO</div>
+            <div id="stickytab" class="table-responsive">
+                <table class="table table-bordered table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Socio</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;" class="sorting desc">Aportes en $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">en U$S Oficial</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">en U$S Blue</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">en U$S Promedio</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+
+                        {% for clave, valor in aportesconsocios.items %}
+
+                            <tr>
+                                <td style="text-align: left;">{{clave}}</td>
+                                <td style="text-align: end;">{{valor.impte_pesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end;">{{valor.impte_usofi|floatformat:"2g"}}</td>
+                                <td style="text-align: end;">{{valor.impte_usblue|floatformat:"2g"}}</td>
+                                <td style="text-align: end;">{{valor.impte_usprom|floatformat:"2g"}}</td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td scope="col" style="text-align: center; vertical-align: middle;">T O T A L E S</th>
+                            <td scope="col" style="text-align: end;">{{totales.total_pesos|floatformat:"2g"}}</td>
+                            <td style="text-align: end;">{{totales.total_dolofi|floatformat:"2g"}}</td>
+                            <td style="text-align: end;">{{totales.total_dolpar|floatformat:"2g"}}</td>
+                            <td style="text-align: end;">{{totales.total_dolprom|floatformat:"2g"}}</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger text-center">Debe iniciar sesión para ver Repartos agrupados por Socio</div>
+
+        {% endif %}
+
+    </div>
+    <br>
+    
+{% endblock %}

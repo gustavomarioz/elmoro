@@ -1,0 +1,126 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}Resultado Económico{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+
+            <div style="color: white; font-size: smaller;"><a href="/Resultados/{{resultado.tipo}}" style="color: white;">{{resultado.modo}}</a>&nbsp;>&nbsp;CRIANZA {{resultado.crianza}}</div>
+            <div class="accordion" id="accordionExample">
+
+                <div class="card bg-primary text-white">
+                    <div class="card-header" id="headingOne">
+                        <div class="mb-0">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div style="text-align: left; font-size:larger; font-weight: bold;">Crianza {{resultado.crianza}}</div>
+                            </div>
+                            <div style="text-align: left; font-size: small;">Período: {{resultado.fini|date:"d/m/Y"}} al {{resultado.ffin|date:"d/m/Y"}} ({{resultado.dias}} días) - Faenado: {{resultado.faenado}} polllos</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-dark text-white">
+                    <div class="card-header" id="headingTwo">
+                        <div class="mb-0">
+                            <div style="display: flex; justify-content: space-between;">
+                                <button class="btn btn-link text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <h5>Ventas</h5>
+                                </button>
+                                <div style="text-align: right; font-size: large;">${{resultado.ingrpesos|floatformat:"2g"}}&emsp;U$S{{resultado.ingrusd|floatformat:"2g"}}</div>
+                            </div>
+                            <div style="text-align: left; font-size: small; margin-left: 1rem;">Precio por pollo: ${{resultado.preciopesos|floatformat:"2g"}}&emsp;U$S{{resultado.preciousd|floatformat:"2g"}}</div>
+                        </div>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body" style="margin-left: 20rem;">
+                            <table class="table table-responsive text-white">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="text-align: center;">Cuenta</th>
+                                        <th scope="col" style="text-align: center;">Importe $</th>
+                                        <th scope="col" style="text-align: center;">Importe U$S</th>
+                                        <th scope="col" style="text-align: center;">% Participación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for clave, valor in dicingreso.items %}
+                                        <tr>
+                                            <td style="text-align: left;">{{clave}}</td>
+                                            <td style="text-align: end;">{{valor.imppesos|floatformat:"2g"}}</td>
+                                            <td style="text-align: end;">{{valor.impusd|floatformat:"2g"}}</td>
+                                            <td style="text-align: end;">{{valor.porcparti|floatformat:"1"}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-dark text-white">
+                    <div class="card-header" id="headingThree">
+                        <div class="mb-0">
+                            <div style="display: flex; justify-content: space-between;">
+                                <button class="btn btn-link text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <h5>Gastos</h5>
+                                </button>
+                                <div style="text-align: right; font-size: large;">${{resultado.egrepesos|floatformat:"2g"}}&emsp;U$S{{resultado.egreusd|floatformat:"2g"}}</div>
+                            </div>
+                            <div style="text-align: left; font-size: small; margin-left: 1rem;">Costo por pollo: ${{resultado.costopesos|floatformat:"2g"}}&emsp;U$S{{resultado.costousd|floatformat:"2g"}}</div>
+                        </div>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body" style="margin-left: 16rem;">
+                            <table class="table table-responsive text-white">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="text-align: center;">Cuenta</th>
+                                        <th scope="col" style="text-align: center;">Importe $</th>
+                                        <th scope="col" style="text-align: center;">Importe U$S</th>
+                                        <th scope="col" style="text-align: center;">% Participación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for clave, valor in dicctas.items %}
+                                        <tr>
+                                            <td style="text-align: left;">{{clave}}</td>
+                                            <td style="text-align: end;">{{valor.imppesos|floatformat:"2g"}}</td>
+                                            <td style="text-align: end;">{{valor.impusd|floatformat:"2g"}}</td>
+                                            <td style="text-align: end;">{{valor.porcparti|floatformat:"1"}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-primary text-white">
+                    <div class="card-header" id="headingFour">
+                        <div class="mb-0">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div style="text-align: left; font-size:larger; font-weight: bold;">Resultado</div>
+                                <div style="text-align: right; font-size: larger;">${{resultado.resupesos|floatformat:"2g"}}&emsp;U$S{{resultado.resuusd|floatformat:"2g"}}</div>
+                            </div>
+                            <div style="text-align: left; font-size: small;">Porcentaje de utilidad en $: {{resultado.porcutil|floatformat:"1g"}}%</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger text-center">Debe iniciar sesión para ver Resultados</div>
+
+        {% endif %}
+
+    </div>
+    <br>
+    
+{% endblock %}

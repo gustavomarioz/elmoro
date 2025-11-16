@@ -1,0 +1,148 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %} {% if reparto %}Edición de Reparto{% else %}Creación de reparto{% endif %} {% endblock%}
+
+{% block content %}
+
+  <div class="container">
+    {% if request.user.is_authenticated %} 
+
+      {% if messages %} 
+        {% for message in messages %}
+          <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-danger">{{ message }}</strong>
+          </div>
+        {% endfor %} 
+      {% endif %}
+
+      <div class="row">
+        <div class="col-md-4 offset-md-4">
+          <div class="card mt-1 mb-1">
+            <div class="card-header text-center pb-0 {% if reparto %}bg-primary text-white{% else %}bg-success text-white{% endif %}">
+              <h4>{% if reparto %}Edición{% else %}Creación{% endif %} de Reparto</h4>
+            </div>
+            <div class="card-body pt-1 mb-0 pb-0">
+              <form action="GuardarReparto/{% if reparto %}{{reparto.idreparto}}{% else %}{{0}}{% endif %}" method="POST" style="margin-bottom:0.4rem;">
+                {% csrf_token %}
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" style="width: 7rem">Crianza</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="numidcrianza"
+                    name="numidcrianza"
+                    class="form-control"
+                    style="text-align: end"
+                    maxlength="3"
+                    value="{% if reparto %}{{reparto.idcrianza}}{% else %}0{% endif %}"
+                    required
+                  />
+                </div>
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" style="width: 7rem">Fecha</span>
+                  </div>
+                  <input
+                    type="date"
+                    id="fecfecha"
+                    name="fecfecha"
+                    class="form-control"
+                    style="text-align: end"
+                    maxlength="10"
+                    value="{% if reparto %}{{reparto.fecha|date:'Y-m-d'}}{% endif %}"
+                    required
+                  />
+                </div>
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" style="width: 7rem">Importe</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="floimporte"
+                    name="floimporte"
+                    class="form-control"
+                    style="text-align: end"
+                    maxlength="15"
+                    value="{% if reparto %}{{reparto.importe|floatformat:'2g'}}{% else %}{{0|floatformat:'2g'}}{% endif %}"
+                    required
+                  />
+                </div>
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" style="width: 7rem">U$S oficial</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="flocot_ofi"
+                    name="flocot_ofi"
+                    class="form-control mr-1"
+                    style="text-align: end"
+                    maxlenght="10"
+                    value="{% if reparto %}{{reparto.cot_usd_ofi|floatformat:'2g'}}{% else %}{{0|floatformat:'2g'}}{% endif %}"
+                    required
+                  />
+                </div>
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" style="width: 7rem">U$S blue</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="flocot_par"
+                    name="flocot_par"
+                    class="form-control mr-1"
+                    style="text-align: end"
+                    maxlenght="10"
+                    value="{% if reparto %}{{reparto.cot_usd_par|floatformat:'2g'}}{% else %}{{0|floatformat:'2g'}}{% endif %}"
+                    required
+                  />
+                </div>
+                <div class="input-group mb-0">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" style="width: 7rem">Cuota</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="flocuota"
+                    name="flocuota"
+                    class="form-control mr-1"
+                    style="text-align: end"
+                    maxlenght="3"
+                    value="{% if reparto %}{{reparto.cuota|floatformat:'1g'}}{% else %}{{0|floatformat:'1g'}}{% endif %}"
+                    required
+                  />
+                </div>
+                <div class="card-footer pt-1 pb-1">
+                  <button
+                    type="submit"
+                    class="{% if reparto %}btn btn-primary{% else %}btn btn-success{% endif %} btn-block"
+                  >Guardar
+                  </button>
+                  <a
+                    href="/Repartos/Crud/"
+                    class="btn btn-secondary btn-block"
+                    role="button"
+                    >Cancelar
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% else %}
+
+      <div class="alert alert-danger text-center">
+        Debe iniciar sesión para ver {% if reparto %}Edición{% else %}Creación{% endif %} de Reparto
+      </div>
+
+    {% endif %}
+  </div>
+
+{% endblock %}

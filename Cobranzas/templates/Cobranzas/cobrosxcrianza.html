@@ -1,0 +1,67 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}Cobranzas por Crianza{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+
+            <div style="color: white; font-size: smaller;"><a href="/Cobranzas/{{total.tipo}}" style="color: white;">{{total.modo}}</a>&nbsp;>&nbsp;CRIANZA {{total.crianza}}</div>
+            <div id="stickytab" class="table-responsive">
+                <table class="table table-bordered table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Cuenta</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Cobranza Cuenta $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Precio x Pollo Cuenta $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Cobranza Cuenta u$d</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Precio x Pollo Cuenta u$d</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+
+                        {% for clave, valor in ctashija.items %}
+
+                            <tr>
+                                <td style="text-align: start;">{{clave}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.importepesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.cobroxpollopesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.importeusd|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-weight: bolder;">{{valor.cobroxpollousd|floatformat:"2g"}}</td>
+                                <td style="text-align: center;"><a href="CobrosXCuenta/{{valor.idcuenta}}" class="btn btn-primary btn-sm">Detalle</a></td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td scope="col" style="text-align: center; vertical-align: middle;">TOTALES</td>
+                            <td scope="col" style="text-align: end;">{{total.totalpesos|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: end;">{{total.totalcobroxpollopesos|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: end;">{{total.totalusd|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: end;">{{total.totalcobroxpollousd|floatformat:"2g"}}</td>
+                            <td scope="col"></td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger text-center">Debe iniciar sesión para ver Cobranzas por Crianza</div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+

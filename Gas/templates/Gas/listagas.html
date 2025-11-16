@@ -1,0 +1,66 @@
+{% extends "Crianzas/base.html" %}
+
+{% load static %}
+
+{% block title %}Gas{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+
+            <div class="row justify-content-center" style="color: white; font-size:medium;">CONSUMO Y GASTO DE GAS POR CRIANZA</div>
+            <div id="stickytab" class="table-responsive">
+                <table class="table table-bordered table-dark table-hover table-fixed">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center; vertical-align: middle;" class="sorting desc">Crianza</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Inicio</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Fin</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Temporada</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Faenado</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">M3 Medidor</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">M3 9300 calorías</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Relación</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Total $ Crianza</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Total U$S Crianza</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Valor $ del M3 Medidor</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+
+                        {% for gas in gases %}
+
+                            <tr>
+                                <td style="text-align: center;">{{gas.idcrianza}}</th>
+                                <td style="text-align: center;">{{gas.idcrianza.fechainicio|date:"d/m/Y"}}</td>
+                                <td style="text-align: center;">{{gas.idcrianza.fechahasta|date:"d/m/Y"}}</td>
+                                <td style="text-align: center;">{{gas.idcrianza.temporada_crianza}}</td>
+                                <td style="text-align: center;">{{gas.idcrianza.faenado}}</td>
+                                <td style="text-align: end;">{{gas.m3_medidor}}</td>
+                                <td style="text-align: end;">{{gas.m3_9300_cal}}</td>
+                                <td style="text-align: end;">{{gas.relacion|floatformat:"2g"}}</td>
+                                <td style="text-align: end;">{{gas.total_pesos}}</td>
+                                <td style="text-align: end;">{{gas.total_usds_paralelos}}</td>
+                                <td style="text-align: end;">{{gas.pesos_m3_medidor|floatformat:"2g"}}</td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger text-center">Debe iniciar sesión para ver el consumo de Gas</div>
+
+        {% endif %}
+
+    </div>
+    <br>
+    
+{% endblock %}
