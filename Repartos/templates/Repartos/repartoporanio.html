@@ -15,16 +15,16 @@
                 <table class="table table-bordered table-dark table-hover">
                     <thead>
                         <tr>
-                            <th scope="col" style="text-align: center; vertical-align: middle;" class="sorting desc">Año</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">Crianzas Repartidas</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">$ Repartidos</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">$ x Crianza Repartidos</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">U$S Of. Repartidos</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">U$S Of. x Crianza</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">U$S Blue Repartidos</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">U$S Blue x Crianza</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">U$S Prom. Repartidos</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">U$S Prom. x Crianza</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;" class="sorting desc">Año</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;">Crianzas Repartidas</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;">$ Repartidos</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;">$ x Crianza Repartidos</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;">En U$S Of.</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;">En U$S Of. x Crianza</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;">En U$S Blue</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;">En U$S Blue x Crianza</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;">En U$S Prom.</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle; font-size: small;">En U$S Prom. x Crianza</th>
                         </tr>
                     </thead>
                     
@@ -33,16 +33,16 @@
                         {% for repartoporanio in repartosporanio %}
 
                             <tr>
-                                <td style="text-align: center;">{{repartoporanio.fecha__year}}</td>
-                                <td style="text-align: end;">{{repartoporanio.Crianzas|floatformat:"1g"}}</td>
-                                <td style="text-align: end;">{{repartoporanio.Total_Pesos|floatformat:"2g"}}</td>
-                                <td style="text-align: end;">{{repartoporanio.Pesos_x_Crianza|floatformat:"2g"}}</td>
-                                <td style="text-align: end;">{{repartoporanio.Total_US_Oficial|floatformat:"2g"}}</td>
-                                <td style="text-align: end;">{{repartoporanio.USOf_x_Crianza|floatformat:"2g"}}</td>
-                                <td style="text-align: end;">{{repartoporanio.Total_US_Blue|floatformat:"2g"}}</td>
-                                <td style="text-align: end;">{{repartoporanio.USBlue_x_Crianza|floatformat:"2g"}}</td>
-                                <td style="text-align: end;">{{repartoporanio.Total_US_Promedio|floatformat:"2g"}}</td>
-                                <td style="text-align: end;">{{repartoporanio.USProm_x_Crianza|floatformat:"2g"}}</td>
+                                <td style="text-align: center; font-size: small;">{{repartoporanio.fecha__year}}</td>
+                                <td style="text-align: end; font-size: small;">{{repartoporanio.Crianzas|floatformat:"1g"}}</td>
+                                <td style="text-align: end; font-size: small;">{{repartoporanio.Total_Pesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-size: small;">{{repartoporanio.Pesos_x_Crianza|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-size: small;">{{repartoporanio.Total_US_Oficial|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-size: small;">{{repartoporanio.USOf_x_Crianza|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-size: small;">{{repartoporanio.Total_US_Blue|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-size: small;">{{repartoporanio.USBlue_x_Crianza|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-size: small;">{{repartoporanio.Total_US_Promedio|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-size: small;">{{repartoporanio.USProm_x_Crianza|floatformat:"2g"}}</td>
                             </tr>
 
                         {% endfor %}
@@ -51,16 +51,16 @@
 
                     <tfoot>
                         <tr>
-                            <td scope="col" style="text-align: center; vertical-align: middle;">TOTALES</th>
-                            <td scope="col" style="text-align: end;">{{repartostotal.Crianzas|floatformat:"1g"}}</td>
-                            <td scope="col" style="text-align: end;">{{repartostotal.Total_Pesos|floatformat:"2g"}}</td>
-                            <td scope="col" style="text-align: end;">{{repartostotal.Pesos_x_Crianza|floatformat:"2g"}}</td>
-                            <td style="text-align: end;">{{repartostotal.Total_US_Oficial|floatformat:"2g"}}</td>
-                            <td style="text-align: end;">{{repartostotal.USOf_x_Crianza|floatformat:"2g"}}</td>
-                            <td style="text-align: end;">{{repartostotal.Total_US_Blue|floatformat:"2g"}}</td>
-                            <td style="text-align: end;">{{repartostotal.USBlue_x_Crianza|floatformat:"2g"}}</td>
-                            <td style="text-align: end;">{{repartostotal.Total_US_Promedio|floatformat:"2g"}}</td>
-                            <td style="text-align: end;">{{repartostotal.USProm_x_Crianza|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: center; vertical-align: middle; font-size: small;">TOTALES</th>
+                            <td scope="col" style="text-align: end; font-size: small;">{{repartostotal.Crianzas|floatformat:"1g"}}</td>
+                            <td scope="col" style="text-align: end; font-size: small;">{{repartostotal.Total_Pesos|floatformat:"2g"}}</td>
+                            <td scope="col" style="text-align: end; font-size: small;">{{repartostotal.Pesos_x_Crianza|floatformat:"2g"}}</td>
+                            <td style="text-align: end; font-size: small;">{{repartostotal.Total_US_Oficial|floatformat:"2g"}}</td>
+                            <td style="text-align: end; font-size: small;">{{repartostotal.USOf_x_Crianza|floatformat:"2g"}}</td>
+                            <td style="text-align: end; font-size: small;">{{repartostotal.Total_US_Blue|floatformat:"2g"}}</td>
+                            <td style="text-align: end; font-size: small;">{{repartostotal.USBlue_x_Crianza|floatformat:"2g"}}</td>
+                            <td style="text-align: end; font-size: small;">{{repartostotal.Total_US_Promedio|floatformat:"2g"}}</td>
+                            <td style="text-align: end; font-size: small;">{{repartostotal.USProm_x_Crianza|floatformat:"2g"}}</td>
                         </tr>
                     </tfoot>
 

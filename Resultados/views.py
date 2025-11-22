@@ -99,10 +99,14 @@ def resultadosxcrianza(request, id):
     registros = RegistroContable.objects.filter(
         (
             (Q(idcuenta__gt="00.00") & Q(idcuenta__lt="00.04"))
-            | (
+            |
+            (
                 (Q(idcuenta__gt="01.00") & Q(idcuenta__lt="06.00"))
                 & (~Q(idcuenta="03.05") & ~Q(idcuenta="03.98"))
             )
+            |
+            (Q(idcuenta__gt="06.00") & Q(idcuenta__lt="07.00"))
+
         )
     ).filter(filtro)
 
@@ -110,6 +114,8 @@ def resultadosxcrianza(request, id):
     ingresosusd = 0.0
     egresospesos = 0.0
     egresosusd = 0.0
+    inversionespesos = 0.0
+    inversionesusd = 0.0
     ctas = []
 
     for registro in registros:
@@ -125,7 +131,11 @@ def resultadosxcrianza(request, id):
         else:
             subtotalpesos = registro.importe
 
-        if str(registro.idcuenta)[:2] > "00":
+        if str(registro.idcuenta)[:2] > "05":
+            inversionespesos += subtotalpesos
+            inversionesusd += subtotalpesos / registro.cot_usd_par
+            cta = str(registro.idcuenta)
+        elif str(registro.idcuenta)[:2] > "00":
             egresospesos += subtotalpesos
             egresosusd += subtotalpesos / registro.cot_usd_par
             cta = str(registro.idcuenta)[:2] + ".00"
@@ -154,8 +164,14 @@ def resultadosxcrianza(request, id):
 
     dicingreso = {}
     dicctas = {}
+    dicinversion = {}
     for cta in ctas:
-        importe = egresospesos if str(cta[0])[:2] > "00" else ingresospesos
+        if str(cta[0])[:2] > "05":
+            importe = inversionespesos
+        elif str(cta[0])[:2] > "00":
+            importe = egresospesos
+        else:
+            importe = ingresospesos
         d = {
             cta[1]: {
                 "imppesos": cta[2],
@@ -163,7 +179,12 @@ def resultadosxcrianza(request, id):
                 "porcparti": cta[2] / importe * 100,
             }
         }
-        dicctas.update(d) if str(cta[0])[:2] > "00" else dicingreso.update(d)
+        if str(cta[0])[:2] > "05":
+            dicinversion.update(d)
+        elif str(cta[0])[:2] > "00":
+            dicctas.update(d)
+        else:
+            dicingreso.update(d)
 
     resultado = {
         "tipo": tipo,
@@ -184,6 +205,8 @@ def resultadosxcrianza(request, id):
         "resupesos": ingresospesos - egresospesos,
         "resuusd": ingresosusd - egresosusd,
         "porcutil": (ingresospesos - egresospesos) / ingresospesos * 100,
+        "invpesos": inversionespesos,
+        "invusd": inversionesusd,
     }
 
     return render(
@@ -192,6 +215,7 @@ def resultadosxcrianza(request, id):
         {
             "dicingreso": dicingreso,
             "dicctas": dicctas,
+            "dicinversion": dicinversion,
             "resultado": resultado,
         },
     )

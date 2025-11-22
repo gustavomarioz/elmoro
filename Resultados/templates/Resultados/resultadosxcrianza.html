@@ -112,6 +112,44 @@
                     </div>
                 </div>
 
+                <div class="card bg-dark text-white">
+                    <div class="card-header" id="headingFive">
+                        <div class="mb-0">
+                            <div style="display: flex; justify-content: space-between;">
+                                <button class="btn btn-link text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <h5>Inversiones</h5>
+                                </button>
+                                <div style="text-align: right; font-size: large;">${{resultado.invpesos|floatformat:"2g"}}&emsp;U$S{{resultado.invusd|floatformat:"2g"}}</div>
+                            </div>
+                            <!-- <div style="text-align: left; font-size: small; margin-left: 1rem;">Costo por pollo: ${{resultado.costopesos|floatformat:"2g"}}&emsp;U$S{{resultado.costousd|floatformat:"2g"}}</div> -->
+                        </div>
+                    </div>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                        <div class="card-body" style="margin-left: 16rem;">
+                            <table class="table table-responsive text-white">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="text-align: center;">Cuenta</th>
+                                        <th scope="col" style="text-align: center;">Importe $</th>
+                                        <th scope="col" style="text-align: center;">Importe U$S</th>
+                                        <th scope="col" style="text-align: center;">% Participación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for clave, valor in dicinversion.items %}
+                                        <tr>
+                                            <td style="text-align: left;">{{clave}}</td>
+                                            <td style="text-align: end;">{{valor.imppesos|floatformat:"2g"}}</td>
+                                            <td style="text-align: end;">{{valor.impusd|floatformat:"2g"}}</td>
+                                            <td style="text-align: end;">{{valor.porcparti|floatformat:"1"}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         {% else %}
