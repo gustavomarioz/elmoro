@@ -18,13 +18,13 @@
                             <th scope="col" style="text-align: center; vertical-align: middle;" class="sorting desc">Fecha</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Descripción</th>
                             {% if total.tipo == 'd' %}
-                                <th scope="col" style="text-align: center; vertical-align: middle;">Importe</th>
-                                <th scope="col" style="text-align: center; vertical-align: middle;">Días</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">Importe $</th>
                                 <th scope="col" style="text-align: center; vertical-align: middle;">Aplica Desde</th>
                                 <th scope="col" style="text-align: center; vertical-align: middle;">Aplica Hasta</th>
-                            {% endif %}
-                            <th scope="col" style="text-align: center; vertical-align: middle;">Importe $</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">Importe u$d</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">Aplica Días</th>
+                            {% endif %}0
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Aplica Importe $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Aplica Importe u$d</th>
                         </tr>
                     </thead>
                     
@@ -37,9 +37,9 @@
                                 <td style="text-align: start; font-weight: bolder;">{{valor.descri}}</td>
                                 {% if total.tipo == 'd' %}
                                     <td style="text-align: end; font-weight: bolder;">{{valor.importe|floatformat:"2g"}}</td>
-                                    <td style="text-align: end; font-weight: bolder;">{{valor.dias}}</td>
                                     <td style="text-align: end; font-weight: bolder;">{{valor.adesde|date:"d/m/Y"}}</td>
                                     <td style="text-align: end; font-weight: bolder;">{{valor.ahasta|date:"d/m/Y"}}</td>
+                                    <td style="text-align: end; font-weight: bolder;">{{valor.dias}}</td>
                                 {% endif %}
                                 <td style="text-align: end; font-weight: bolder;">{{valor.totpesos|floatformat:"2g"}}</td>
                                 <td style="text-align: end; font-weight: bolder;">{{valor.totusd|floatformat:"2g"}}</td>
