@@ -10,7 +10,7 @@
 
         {% if request.user.is_authenticated %}
 
-            <div class="row justify-content-center" style="color: white; font-size:medium;">RESUMEN GENERAL DE CRIANZAS</div>
+            <div style="color: white; font-size:medium;">RESUMEN GENERAL DE CRIANZAS</div>
             <div id="stickytab" class="table-responsive">
                 <table class="table table-bordered table-dark table-hover">
                     <thead>
@@ -35,13 +35,7 @@
                         {% for crianza in crianzas %}
 
                             <tr>
-                                <td style="text-align: center;">
-                                    {% if crianza.imagen %}
-                                        <a href="{% url 'imagen' crianza.idcrianza %}" style="color: cyan;">{{crianza.idcrianza}}</a>
-                                    {% else %}
-                                        {{crianza.idcrianza}}
-                                    {% endif %}
-                                </td>
+                                <td style="text-align: center;"><a href="DetalleXCrianza/{{crianza.idcrianza}}" style="color: yellowgreen;">{{crianza.idcrianza}}</a></th>
                                 <td style="text-align: center;">{{crianza.fechadesde|date:"d/m/Y"}}</td>
                                 <td style="text-align: center;">{{crianza.fechahasta|date:"d/m/Y"}}</td>
                                 <td style="text-align: left;">{{crianza.temporada_crianza}}</td>
@@ -52,7 +46,13 @@
                                 <td style="text-align: end;">{{crianza.mortandad|floatformat:"1"}}</td>
                                 <td style="text-align: end;">{{crianza.indicreci}}</td>
                                 <td style="text-align: end;">{{crianza.conversion|floatformat:"2"}}</td>
-                                <td style="text-align: end;">{{crianza.fep|floatformat:"1"}}</td>
+                                <td style="text-align: end;">
+                                    {% if crianza.imagen %}
+                                        <a href="{% url 'imagen' crianza.idcrianza %}" style="color: yellowgreen;">{{crianza.fep|floatformat:"1"}}</a>
+                                    {% else %}
+                                        {{crianza.fep|floatformat:"1"}}
+                                    {% endif %}
+                                </td>
                             </tr>
 
                         {% endfor %}

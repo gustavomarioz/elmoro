@@ -10,7 +10,7 @@
 
         {% if request.user.is_authenticated %}
 
-            <div style="color: white; font-size: smaller;"><a href="/Cobranzas/{{total.tipo}}" style="color: white;">{{total.modo}}</a>&nbsp;>&nbsp;<a href="/Cobranzas/CobrosXCrianza/{{total.crianza}}" style="color: white;">CRIANZA {{total.crianza}}</a>&nbsp;>&nbsp;{{total.cuentahija}}</div>
+            <div style="color: white; font-size: medium;"><a href="/Cobranzas/{{total.tipo}}" style="color: white;">{{total.modo}}</a>&nbsp;>&nbsp;<a href="/Cobranzas/CobrosXCrianza/{{total.crianza}}" style="color: white;">CRIANZA {{total.crianza}}</a>&nbsp;>&nbsp;{{total.cuentahija}}</div>
             <div id="stickytab" class="table-responsive">
                 <table class="table table-bordered table-dark table-hover">
                     <thead>
