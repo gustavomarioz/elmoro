@@ -54,6 +54,10 @@ class Crianza(models.Model):
         pxm2 = self.ingresado / self.metros2
         return pxm2
 
+    def alimentoxpollo(self):
+        alimentoxpollo = self.kgsalimento / self.faenado
+        return alimentoxpollo
+
     def peso(self):
         pesaje = self.kgsfaenados / self.faenado
         return pesaje
@@ -96,7 +100,6 @@ class DetalleDeCrianza(models.Model):
     faenado = models.IntegerField(verbose_name="Faenado")
     pollosxmetro2 = models.DecimalField(verbose_name="Pollos por m2", max_digits=3, decimal_places=1)
     dias = models.DecimalField(verbose_name="Edad", max_digits=3, decimal_places=1)
-    totalagua = models.IntegerField(verbose_name="lts de Agua Consumida", default=0)
     kgsalimento = models.DecimalField(verbose_name="kgs de Alimento Consumido", max_digits=8, decimal_places=2)
     kgsfaenados = models.IntegerField(verbose_name="kgs Faenado")
     muertosgranja = models.IntegerField(verbose_name="Muertos en Granja")
@@ -108,7 +111,11 @@ class DetalleDeCrianza(models.Model):
         db_table = "detalledecrianza"
         ordering = ["-crianza", "galpon"]
 
-    def pesoxgalpon(self):
+    def alimentoxpolloxgalpon(self):
+        alimentoxpollo = self.kgsalimento / self.faenado
+        return alimentoxpollo
+
+    def pesoxpolloxgalpon(self):
         pesaje = self.kgsfaenados / self.faenado
         return pesaje
 
