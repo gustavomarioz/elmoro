@@ -20,12 +20,13 @@
                             <th scope="col" style="text-align: center; vertical-align: middle;">Fin</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Días</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Faenado</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Precio x pollo $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Precio x pollo U$S</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo U$S</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Resultado $</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Resultado U$S</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">Precio x pollo $</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo $</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">% de Utilidad $</th>
-                            <!-- <th scope="col"></th> -->
                         </tr>
                     </thead>
                     
@@ -39,12 +40,13 @@
                                 <td style="text-align: center;">{{valor.ffin|date:"d/m/Y"}}</td>
                                 <td style="text-align: end;">{{valor.dias}}</td>
                                 <td style="text-align: end;">{{valor.faenado}}</td>
+                                <td style="text-align: end;">{{valor.precioxpollo_pesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end;">{{valor.precioxpollo_usd|floatformat:"2g"}}</td>
+                                <td style="text-align: end;">{{valor.costoxpollo_pesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end;">{{valor.costoxpollo_usd|floatformat:"2g"}}</td>
                                 <td style="text-align: end;">{{valor.totalpesos|floatformat:"2g"}}</td>
                                 <td style="text-align: end;">{{valor.totalusd|floatformat:"2g"}}</td>
-                                <td style="text-align: end;">{{valor.precioxpollo_pesos|floatformat:"2g"}}</td>
-                                <td style="text-align: end;">{{valor.costoxpollo_pesos|floatformat:"2g"}}</td>
                                 <td style="text-align: center;">{{valor.utilidad|floatformat:"1"}}</td>
-                                <!-- <td style="text-align: center;"><a href="ResultadosXCrianza/{{clave}}" class="btn btn-primary btn-sm">Detalle</a></td> -->
                             </tr>
 
                         {% endfor %}
