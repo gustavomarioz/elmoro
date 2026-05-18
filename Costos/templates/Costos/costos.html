@@ -18,12 +18,12 @@
                             <th scope="col" style="text-align: center; vertical-align: middle;" class="sorting desc">Crianza</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Inicio</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Fin</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Días</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Faenado</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo $</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo U$S</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Costo Total $</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo en $</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Costo Total u$s</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo en U$S</th>
-                            <!-- <th scope="col" style="text-align: center; vertical-align: middle;"></th> -->
                         </tr>
                     </thead>
                     
@@ -35,12 +35,12 @@
                                 <td style="text-align: center;"><a href="CostosXCrianza/{{clave}}" style="color: yellowgreen;">{{clave}}</a></th>
                                 <td style="text-align: center;">{{valor.fini|date:"d/m/Y"}}</td>
                                 <td style="text-align: center;">{{valor.ffin|date:"d/m/Y"}}</td>
+                                <td style="text-align: end;">{{valor.dias}}</td>
                                 <td style="text-align: end;">{{valor.faenado}}</td>
-                                <td style="text-align: end; font-weight: bolder;">{{valor.totalpesos|floatformat:"2g"}}</td>
                                 <td style="text-align: end; font-weight:bolder;">{{valor.costoxpollopesos|floatformat:"2g"}}</td>
-                                <td style="text-align: end; font-weight:bolder;">{{valor.totalusd|floatformat:"2g"}}</td>
                                 <td style="text-align: end; font-weight:bolder;">{{valor.costoxpollousd|floatformat:"2g"}}</td>
-                                <!-- <td style="text-align: center;"><a href="CostosXCrianza/{{clave}}" class="btn btn-primary btn-sm">Detalle</a></td> -->
+                                <td style="text-align: end; font-weight: bolder;">{{valor.totalpesos|floatformat:"2g"}}</td>
+                                <td style="text-align: end; font-weight:bolder;">{{valor.totalusd|floatformat:"2g"}}</td>
                             </tr>
 
                         {% endfor %}
@@ -57,6 +57,5 @@
         {% endif %}
 
     </div>
-    <br>
     
 {% endblock %}

@@ -47,6 +47,7 @@ def cobranzas(request, tipo):
             str(crianza.idcrianza): {
                 "fini": crianza.fechainicio,
                 "ffin": crianza.fechahasta,
+                "dias": (crianza.fechahasta - crianza.fechainicio).days + 1,
                 "faenado": crianza.faenado,
                 "totalpesos": totalpesos,
                 "totalusd": totalusd,

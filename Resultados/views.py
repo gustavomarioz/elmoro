@@ -68,10 +68,14 @@ def resultados(request, tipo):
                 "totalpesos": resultado_pesos,
                 "totalusd": resutado_usd,
                 "utilidad": utilidad,
-                "precioxpollo_pesos": total_cobro_pesos / crianza.faenado,
-                "precioxpollo_usd": total_cobro_usd / crianza.faenado,
-                "costoxpollo_pesos": total_costo_pesos / crianza.faenado,
-                "costoxpollo_usd": total_costo_usd / crianza.faenado,
+                # "precioxpollo_pesos": total_cobro_pesos / crianza.faenado,
+                "cobropesos": total_cobro_pesos,
+                # "precioxpollo_usd": total_cobro_usd / crianza.faenado,
+                "cobrousd": total_cobro_usd,
+                # "costoxpollo_pesos": total_costo_pesos / crianza.faenado,
+                "costopesos": total_costo_pesos,
+                # "costoxpollo_usd": total_costo_usd / crianza.faenado,
+                "costousd": total_costo_usd,
             }
         }
         resultados.update(d)

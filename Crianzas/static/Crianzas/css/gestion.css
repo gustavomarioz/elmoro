@@ -309,17 +309,20 @@ table thead tr th {
 /* Contenedor externo */
 #stickytab {
   display: inline-block;
-  height: 20.2em;
-  width: 71em;
+  /* height: 20.2em;
+  width: 71em; */
+  height: 53%;
+  width: 102%;
   overflow: auto;
-  min-height: 6em;
-  min-width: 6em;
+  /* min-height: 6em;
+  min-width: 6em; */
   resize: both;
+  margin-bottom: 0.5em;
 }
 
 /* Tabla */
 #stickytab table {
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0;
 }
 
