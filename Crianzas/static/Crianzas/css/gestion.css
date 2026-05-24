@@ -279,6 +279,43 @@ ul.errorlist {
   color: red;
 }
 
+.tabcaption {
+  color: white;
+  font-size: medium;
+}
+
+.titucard {
+  text-align: left;
+  font-size: xx-large;
+}
+
+.subtitucard {
+  text-align: left;
+  font-size: small;
+}
+
+.titucardhl {
+  text-align: left;
+  font-size: x-large;
+}
+
+.titucardhr {
+   text-align: right;
+   font-size: large;
+  }
+
+.titucardresu {
+  text-align: right;
+  font-size: larger;
+  font-weight: bold;
+  }
+
+.subtitucardb {
+  text-align: left;
+  font-size: small;
+  padding-left: 1rem;
+}
+
 /* CSS para ordenamiento de tablas */
 table thead tr th {
   cursor: pointer;
@@ -309,13 +346,9 @@ table thead tr th {
 /* Contenedor externo */
 #stickytab {
   display: inline-block;
-  /* height: 20.2em;
-  width: 71em; */
   height: 53%;
   width: 102%;
   overflow: auto;
-  /* min-height: 6em;
-  min-width: 6em; */
   resize: both;
   margin-bottom: 0.5em;
 }
@@ -347,6 +380,49 @@ table thead tr th {
   z-index: 1;
   border-top: black solid 1px;
   background-color: rgb(85, 84, 84);
+}
+
+@media (max-width: 768px) {
+  .tabcaption {
+    font-size: 0.75rem;
+  }
+
+  #stickytab table {
+    border: 0px;
+  }
+
+  #stickytab table thead, #stickytab table tfoot {
+    display: none;
+  }
+
+  #stickytab table tr {
+    margin-bottom: 0.5rem;
+    border-bottom: 0.25rem solid #ddd;
+    display: block;
+  }
+
+  #stickytab table td {
+    display: block;
+    font-weight: normal !important;
+    font-size: 0.75rem;
+    border-bottom: 0.0625rem solid #ddd;
+    text-align: right !important;
+  }
+
+  #stickytab table td:last-child {
+    border-bottom: 0rem;
+  }
+
+  #stickytab table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-transform: uppercase;
+    float: left;
+  }
+
+  .footer {
+    font-size: 0.5rem;  
+  }
 }
 
 /* Menú desplegable */

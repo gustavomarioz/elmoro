@@ -10,7 +10,7 @@
 
         {% if request.user.is_authenticated %}
 
-            <div style="color: white; font-size: medium;">{{total.modo}}</div>
+            <div class="tabcaption">{{total.modo}}</div>
             <div id="stickytab" class="table-responsive">
                 <table class="table table-bordered table-dark table-hover">
                     <thead>
@@ -21,9 +21,9 @@
                             <th scope="col" style="text-align: center; vertical-align: middle;">Días</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Faenado</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo $</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo U$S</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo x pollo u$d</th>
                             <th scope="col" style="text-align: center; vertical-align: middle;">Costo Total $</th>
-                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo Total u$s</th>
+                            <th scope="col" style="text-align: center; vertical-align: middle;">Costo Total u$d</th>
                         </tr>
                     </thead>
                     
@@ -32,15 +32,15 @@
                         {% for clave, valor in costos.items %}
 
                             <tr>
-                                <td style="text-align: center;"><a href="CostosXCrianza/{{clave}}" style="color: yellowgreen;">{{clave}}</a></th>
-                                <td style="text-align: center;">{{valor.fini|date:"d/m/Y"}}</td>
-                                <td style="text-align: center;">{{valor.ffin|date:"d/m/Y"}}</td>
-                                <td style="text-align: end;">{{valor.dias}}</td>
-                                <td style="text-align: end;">{{valor.faenado}}</td>
-                                <td style="text-align: end; font-weight:bolder;">{{valor.costoxpollopesos|floatformat:"2g"}}</td>
-                                <td style="text-align: end; font-weight:bolder;">{{valor.costoxpollousd|floatformat:"2g"}}</td>
-                                <td style="text-align: end; font-weight: bolder;">{{valor.totalpesos|floatformat:"2g"}}</td>
-                                <td style="text-align: end; font-weight:bolder;">{{valor.totalusd|floatformat:"2g"}}</td>
+                                <td data-label="Crianza" style="text-align: center;"><a href="CostosXCrianza/{{clave}}" style="color: yellowgreen;">{{clave}}</a></th>
+                                <td data-label="Inicio" style="text-align: center;">{{valor.fini|date:"d/m/Y"}}</td>
+                                <td data-label="Fin" style="text-align: center;">{{valor.ffin|date:"d/m/Y"}}</td>
+                                <td data-label="Dias" style="text-align: end;">{{valor.dias}}</td>
+                                <td data-label="Faenado" style="text-align: end;">{{valor.faenado}}</td>
+                                <td data-label="Costo x Pollo $" style="text-align: end; font-weight:bolder;">{{valor.costoxpollopesos|floatformat:"2g"}}</td>
+                                <td data-label="Costo x Pollo u$d" style="text-align: end; font-weight:bolder;">{{valor.costoxpollousd|floatformat:"2g"}}</td>
+                                <td data-label="Costo Total $" style="text-align: end; font-weight: bolder;">{{valor.totalpesos|floatformat:"2g"}}</td>
+                                <td data-label="Costo Total u$d" style="text-align: end; font-weight:bolder;">{{valor.totalusd|floatformat:"2g"}}</td>
                             </tr>
 
                         {% endfor %}
