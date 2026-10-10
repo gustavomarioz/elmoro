@@ -34,6 +34,7 @@ class Crianza(models.Model):
     muertosgranja = models.IntegerField(verbose_name="Muertos en Granja")
     granjero = models.CharField(verbose_name="Granjero", max_length=20)
     fechafactura = models.DateField(verbose_name="Fecha Factura", blank=True, null=True)
+    nrofactura = models.CharField(verbose_name="N° Factura", max_length=14, blank=True, null=True)
     imagen = models.ImageField(
         verbose_name="Imagen",
         blank=True,
